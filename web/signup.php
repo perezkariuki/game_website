@@ -1,3 +1,4 @@
+<?php include('server.php') ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,8 +26,35 @@ window.addEventListener("scroll", function(){
 })
 </script>
 <hr>
-<div class=container id="time">
-<h1>top game on daysons</h1>
-<h6></h6>
-</div>
+<body>
+  <div>
+  	<h2>SIGN UP</h2>
+  </div>
+
+  <form method="post" action="signup.php">
+  	<?php include('errors.php'); ?>
+  	<div>
+  	  <label>Username</label>
+  	  <input type="text" name="username" value="<?php echo $username; ?>">
+  	</div>
+  	<div>
+  	  <label>Email</label>
+  	  <input type="email" name="email" value="<?php echo $email; ?>">
+  	</div>
+  	<div>
+  	  <label>Password</label>
+  	  <input type="password" name="password">
+  	</div>
+  	<div>
+  	  <label>Confirm password</label>
+  	  <input type="password" name="conpassword">
+  	</div>
+  	<div>
+  	  <button type="submit" class="btn" name="signup">Sign up</button>
+  	</div>
+  	<p>
+  		Already a member? <a href="Signin.php">Sign in</a>
+  	</p>
+  </form>
+</body>
 </html>

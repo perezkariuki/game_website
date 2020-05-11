@@ -64,5 +64,8 @@ hr{
 }
 .container {
     margin-top:2%;
-    left:0;
+    padding-left:7%;
+}
+h1{
+  text-transform:uppercase;
 }
