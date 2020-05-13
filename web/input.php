@@ -121,6 +121,11 @@ window.addEventListener("scroll", function(){
 				<input type="text" id="about" name="Gameabout" placeholder="write a text about the game" required/>
 			</div>
 			<br>
+      <div>
+				<label for="require">Game requirements </label>
+				<input type="text" id="require" name="require" placeholder="write the game requirements" required/>
+			</div>
+      <br>
 			<div>
 				<button type="submit" name="submit" value="addGame">
 				<strong>Add</strong>
