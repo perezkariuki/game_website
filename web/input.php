@@ -66,7 +66,7 @@ window.addEventListener("scroll", function(){
 <form action = "server.php" method= "post" autocomplete = "off" >
 			<div>
 				<label for="GameName"> Game Name </label>
-				<input type="text" id="GameName" name="GameName" required autofocus />
+				<input type="text" id="GameName" name="GameName" required/>
 			</div>
       <br>
       <div>
@@ -106,13 +106,11 @@ window.addEventListener("scroll", function(){
       </div>
 			<br>
 			<div>
-				<label for="Displayupload"> Display images </label>
-				<br>
-        <lable for="image1">First image upload</label>
-				<input type="file" id="image1" name="image1" accept="image/png, image/jpeg, image/png" required/>
-        <lable for="image1">Second image upload</label>
+        <label for="image1">First image upload</label>
+				<input type="file" id="image1" name="image1" accept="image/png, image/jpeg, image/png" required autofocus/>
+        <label for="image2">Second image upload</label>
         <input type="file" id="image2" name="image2" accept="image/png, image/jpeg, image/png" required/>
-        <lable for="image1">Third image upload</label>
+        <label for="image3">Third image upload</label>
         <input type="file" id="image3" name="image3" accept="image/png, image/jpeg, image/png" required/>
 			</div>
 			<br>
@@ -127,7 +125,7 @@ window.addEventListener("scroll", function(){
 			</div>
       <br>
 			<div>
-				<button type="submit" name="submit" value="addGame">
+				<button type="submit" name="addGame" value="addGame">
 				<strong>Add</strong>
 				</button>
 			</div>

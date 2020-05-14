@@ -1,13 +1,13 @@
 <?php
 session_start();
-
+//user signup
 // initializing variables
 $username = "";
 $email    = "";
 $errors = array();
 
 // connect to the database
-$db = mysqli_connect('localhost', 'root', '', 'Daysons');
+include_once("dbconnect.php")
 
 // REGISTER USER
 if (isset($_POST['signup'])) {
@@ -83,4 +83,30 @@ if (isset($_POST['login'])) {
   }
 }
 
+//Game input
+if(isset($_POST['addGame'])) {
+	$GameName = $_POST['GameName'];
+	$Mainimage = $_POST['Mainimage'];
+	$category = $_POST['category'];
+  $company = $_POST['company'];
+  $language = $_POST['language'];
+  $totalSize = $_POST['totalSize'];
+  $CompressedSize = $_POST['compressedSize'];
+  $image1 = $_POST['image1'];
+  $image2 = $_POST['image2'];
+  $image3 = $_POST['image3'];
+  $Gameabout = $_POST['Gameabout'];
+  $require = $_POST['require'];
+	$account_id = $_SESSION['Id'];
+
+
+		$result = mysqli_query($mysqli, "INSERT INTO Gameupload(GameName, Mainimage, category, company, language, totalSize, compressedSize,
+      image1, image2, image2, image3, Gameabout, require, account_id) VALUES('$GameName', '$Mainimage', '$category', '$company', '$language', '$totalSize', '$compressedSize',
+      '$image1', '$image2', '$image2', '$image3', '$Gameabout', '$require', '$account_id')");
+
+		//display success message
+		echo "<font color='green'>Data added successfully.";
+		echo "<br/><a href='index.html'>View Result</a>";
+		header("Refresh:40; url=index.html");
+	}
 ?>
