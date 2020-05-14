@@ -7,7 +7,7 @@ $email    = "";
 $errors = array();
 
 // connect to the database
-include_once("dbconnect.php")
+$db = mysqli_connect('localhost', 'root', '', 'Daysons');
 
 // REGISTER USER
 if (isset($_POST['signup'])) {
@@ -91,7 +91,7 @@ if(isset($_POST['addGame'])) {
   $company = $_POST['company'];
   $language = $_POST['language'];
   $totalSize = $_POST['totalSize'];
-  $CompressedSize = $_POST['compressedSize'];
+  $compressedSize = $_POST['compressedSize'];
   $image1 = $_POST['image1'];
   $image2 = $_POST['image2'];
   $image3 = $_POST['image3'];
@@ -100,13 +100,13 @@ if(isset($_POST['addGame'])) {
 	$account_id = $_SESSION['Id'];
 
 
-		$result = mysqli_query($mysqli, "INSERT INTO Gameupload(GameName, Mainimage, category, company, language, totalSize, compressedSize,
-      image1, image2, image2, image3, Gameabout, require, account_id) VALUES('$GameName', '$Mainimage', '$category', '$company', '$language', '$totalSize', '$compressedSize',
-      '$image1', '$image2', '$image2', '$image3', '$Gameabout', '$require', '$account_id')");
+	$result = mysqli_query($db, "INSERT INTO Gameupload (GameName, Mainimage, category, company, language, totalSize, compressedSize,
+      image1, image2, image3, Gameabout, require, account_id) VALUES('$GameName', '$Mainimage', '$category', '$company', '$language', '$totalSize', '$compressedSize',
+      '$image1', '$image2', '$image3', '$Gameabout', '$require', '$account_id')");
 
 		//display success message
 		echo "<font color='green'>Data added successfully.";
 		echo "<br/><a href='index.html'>View Result</a>";
-		header("Refresh:40; url=index.html");
+		header("Refresh:100; url=index.html");
 	}
 ?>
