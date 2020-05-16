@@ -6,16 +6,16 @@ $username = "";
 $email    = "";
 $errors = array();
 
-// connect to the database
-$db = mysqli_connect('localhost', 'root', '', 'Daysons');
+//DATABASE Connection
+include_once("dbconnect.php");
 
 // REGISTER USER
 if (isset($_POST['signup'])) {
   // receive all input values from the form
-  $username = mysqli_real_escape_string($db, $_POST['username']);
-  $email = mysqli_real_escape_string($db, $_POST['email']);
-  $password = mysqli_real_escape_string($db, $_POST['password']);
-  $conpassword = mysqli_real_escape_string($db, $_POST['conpassword']);
+  $username = mysqli_real_escape_string($conn, $_POST['username']);
+  $email = mysqli_real_escape_string($conn, $_POST['email']);
+  $password = mysqli_real_escape_string($conn, $_POST['password']);
+  $conpassword = mysqli_real_escape_string($conn, $_POST['conpassword']);
 
   // form validation: ensure that the form is correctly filled ...
   // by adding (array_push()) corresponding error unto $errors array
@@ -29,7 +29,7 @@ if (isset($_POST['signup'])) {
   // first check the database to make sure
   // a user does not already exist with the same username and/or email
   $user_check_query = "SELECT * FROM account WHERE username='$username' OR email='$email' LIMIT 1";
-  $result = mysqli_query($db, $user_check_query);
+  $result = mysqli_query($conn, $user_check_query);
   $user = mysqli_fetch_assoc($result);
 
   if ($user) { // if user exists
@@ -48,7 +48,7 @@ if (isset($_POST['signup'])) {
 
   	$query = "INSERT INTO account (username, email, password)
   			  VALUES('$username', '$email', '$password')";
-  	mysqli_query($db, $query);
+  	mysqli_query($conn, $query);
   	$_SESSION['username'] = $username;
   	$_SESSION['success'] = "You are now logged in";
   	header('location: index.html');
@@ -59,8 +59,8 @@ if (isset($_POST['signup'])) {
 
 // login user
 if (isset($_POST['login'])) {
-  $username = mysqli_real_escape_string($db, $_POST['username']);
-  $password = mysqli_real_escape_string($db, $_POST['password']);
+  $username = mysqli_real_escape_string($conn, $_POST['username']);
+  $password = mysqli_real_escape_string($conn, $_POST['password']);
 
   if (empty($username)) {
   	array_push($errors, "Username is required");
@@ -72,7 +72,7 @@ if (isset($_POST['login'])) {
   if (count($errors) == 0) {
   	$password = md5($password);
   	$query = "SELECT * FROM account WHERE username='$username' AND password='$password'";
-  	$results = mysqli_query($db, $query);
+  	$results = mysqli_query($conn, $query);
   	if (mysqli_num_rows($results) == 1) {
   	  $_SESSION['username'] = $username;
   	  $_SESSION['success'] = "You are now logged in";
@@ -97,16 +97,15 @@ if(isset($_POST['addGame'])) {
   $image3 = $_POST['image3'];
   $Gameabout = $_POST['Gameabout'];
   $require = $_POST['require'];
-	$account_id = $_SESSION['Id'];
+	$account_Id = $_SESSION['Id'];
 
 
-	$result = mysqli_query($db, "INSERT INTO Gameupload (GameName, Mainimage, category, company, language, totalSize, compressedSize,
-      image1, image2, image3, Gameabout, require, account_id) VALUES('$GameName', '$Mainimage', '$category', '$company', '$language', '$totalSize', '$compressedSize',
-      '$image1', '$image2', '$image3', '$Gameabout', '$require', '$account_id')");
+	$result = mysqli_query($conn, "INSERT INTO Gameupload (GameName, Mainimage, category, company, language, totalSize, compressedSize,
+      image1, image2, image3, Gameabout, require, account_Id) VALUES('$GameName', '$Mainimage', '$category', '$company', '$language', '$totalSize', '$compressedSize',
+      '$image1', '$image2', '$image3', '$Gameabout', '$require', '$account_Id')");
 
 		//display success message
 		echo "<font color='green'>Data added successfully.";
 		echo "<br/><a href='index.html'>View Result</a>";
-		header("Refresh:100; url=index.html");
 	}
 ?>

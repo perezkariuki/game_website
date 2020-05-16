@@ -6,7 +6,7 @@
     define("bd_name", "Daysons");
 
     //Connection to the database
-    $conn = new mysqli(hostname, hostuser, hostpass, bd_name);
+    $conn = mysqli_connect(hostname, hostuser, hostpass, bd_name);
 
     //Verify connection
     if($conn->connect_error){
